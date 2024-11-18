@@ -1,7 +1,14 @@
-import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const sequelize = new Sequelize('postgres://user:password@localhost:5434/database', {
-  logging: false,
-});
+const env = {
+  development: {
+    dialect: process.env.POTGRES_DRIVER!,
+    database: process.env.POSTGRES_DB!,
+    username: process.env.POSTGRES_USER!,
+    host: process.env.POSTGRES_HOST!,
+    password: process.env.POSTGRES_PASSWORD!,
+},
+}
 
-export default sequelize;
+export default env;
