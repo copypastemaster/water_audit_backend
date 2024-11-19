@@ -1,11 +1,13 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../configs/sequelize.config";
+import { sequelize } from "../config/sequelize.config";
 
-class User extends Model {
+export class User extends Model {
   public id!: number;
   public firstName!: string;
   public lastName!: string;
-  public name!: string;
+  public name!: string; // Virtual field
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 User.init({
@@ -28,9 +30,9 @@ User.init({
       return `${this.getDataValue('firstName')} ${this.getDataValue('lastName')}`;
     },
   },
-},
-  {
-    sequelize,
-    tableName: "users",
-  }
-)
+  createdAt: DataTypes.DATE,
+  updatedAt: DataTypes.DATE,
+}, {
+  sequelize,
+  tableName: "Users",
+});
