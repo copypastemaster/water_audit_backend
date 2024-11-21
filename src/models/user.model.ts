@@ -34,5 +34,5 @@ User.init({
   updatedAt: DataTypes.DATE,
 }, {
   sequelize,
-  tableName: "Users",
+  tableName: "users",
 });

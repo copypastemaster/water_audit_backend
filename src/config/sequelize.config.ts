@@ -1,4 +1,5 @@
-require("dotenv").config();
+require('dotenv').config({ path: ".env.dev" });
+
 const Sequelize = require("sequelize");
 const env = require('./database.config.js');
 
@@ -15,3 +16,8 @@ export const sequelize = new Sequelize(
     port: 5434,
 });
 
+sequelize.sync({ force: false }).then(() => {
+  console.log('Database synced!');
+}).catch((err: any) => {
+  console.error('Error syncing database:', err);
+});

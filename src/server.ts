@@ -5,9 +5,10 @@ const app: Application = express();
 const PORT = 3000;
 
 app.use('/', async (req: Request, res: Response) => {
-  await User.findAll().then(users => {
-    res.json(users);
-  })
+  const result = await User.findAll();
+  console.log('result: ', result);
+
+  res.status(200).json(result);
 })
 
 app.listen(PORT, () => {
