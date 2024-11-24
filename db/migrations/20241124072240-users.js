@@ -1,14 +1,11 @@
-'use strict';
-
-/** @type {import('sequelize-cli').Migration} */
+// Migration for creating 'users' table
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('users', {
       id: {
-        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
       },
       firstName: {
         type: Sequelize.STRING,
@@ -18,19 +15,26 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
-        type: Sequelize.STRING,
+      roleId: {
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: 'roles',
+          key: 'id',
+        },
         allowNull: false,
-        unique: true,
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.fn('NOW'),
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
-      }
+        allowNull: false,
+        defaultValue: Sequelize.fn('NOW'),
+      },
     });
   },
 
