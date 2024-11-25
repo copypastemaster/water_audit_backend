@@ -3,7 +3,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('users', {
       id: {
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
@@ -16,7 +16,7 @@ module.exports = {
         allowNull: false,
       },
       roleId: {
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER,
         references: {
           model: 'roles',
           key: 'id',
@@ -24,6 +24,9 @@ module.exports = {
         allowNull: false,
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
+      },
+      subdivision: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         type: Sequelize.DATE,

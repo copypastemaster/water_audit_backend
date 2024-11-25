@@ -4,25 +4,28 @@ module.exports = {
     await queryInterface.bulkInsert('users', [
       {
         id: 1,
-        firstName: 'Alice',
-        lastName: 'Johnson',
+        firstName: 'Enoch',
+        lastName: 'Binas',
         roleId: 1, // Admin role
+        subdivision: 'Neo Vista Homes',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 2,
-        firstName: 'Bob',
-        lastName: 'Smith',
+        firstName: 'Marlon',
+        lastName: 'Penkian',
         roleId: 2, // User role
+        subdivision: 'Neo Vista Homes',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 3,
-        firstName: 'Charlie',
-        lastName: 'Brown',
-        roleId: 3, // Moderator role
+        firstName: 'Maam',
+        lastName: 'Majo',
+        roleId: 3, // Officerr role
+        subdivision: 'Neo Vista Homes',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

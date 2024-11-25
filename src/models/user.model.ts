@@ -7,19 +7,9 @@ export class User extends Model {
   declare firstName: string;
   declare lastName: string;
   declare name: string; // Virtual field
+  
   declare createdAt: Date;
   declare updatedAt: Date;
-  declare roleId: ForeignKey<Role>;
-  declare getRole: BelongsToGetAssociationMixin<Role>;
-  declare role?: NonAttribute<Role>;
-
-  declare static associations: {
-    role: Association<User, Role>;
-  }
-
-  static associate() {
-    User.belongsTo(Role, { foreignKey: "roleId", as: "role" });
-  }
 }
 
 User.init({
@@ -41,14 +31,6 @@ User.init({
     get() {
       return `${this.getDataValue('firstName')} ${this.getDataValue('lastName')}`;
     },
-  },
-  roleId: {
-    type: DataTypes.INTEGER.UNSIGNED,
-    references: {
-      model: 'roles', // Name of the referenced table
-      key: 'roleId', // Primary key in the referenced table
-    },
-    allowNull: false,
   },
   createdAt: DataTypes.DATE,
   updatedAt: DataTypes.DATE,

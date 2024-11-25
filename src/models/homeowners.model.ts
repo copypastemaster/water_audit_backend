@@ -5,6 +5,15 @@ import { User } from "./user.model";
 export class Homeowner extends Model {
   declare id: number;
   declare userId: number; // Foreign key to User model
+  declare block: string;
+  declare lot: string;
+  declare street: string;
+  declare completeAddress: string;
+  declare previousWaterReading: number;
+  declare currentWaterReading: number;
+  declare toPay: number;
+  declare isWaterCutOff: boolean;
+  declare arrears: number;
   declare createdAt: Date;
   declare updatedAt: Date;
 }
