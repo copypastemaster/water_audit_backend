@@ -7,7 +7,6 @@ export class User extends Model {
   declare firstName: string;
   declare lastName: string;
   declare name: string; // Virtual field
-  
   declare createdAt: Date;
   declare updatedAt: Date;
 }

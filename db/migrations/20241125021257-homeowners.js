@@ -5,10 +5,12 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('homeowners', {
       id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true,
       },
       userId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: 'users',
           key: 'id',
@@ -32,25 +34,26 @@ module.exports = {
       completeAddress: {
         type: Sequelize.STRING,
         allowNull: false,
-        references: {
-          model: 'address',
-          key: 'id',
-        }
       },
       previousWaterReading: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
+        allowNull: false,
       },
       currentWaterReading: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
+        allowNull: false,
       },
       toPay: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
+        allowNull: false,
       },
       isWaterCutOff: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       arrears: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -62,10 +65,10 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.fn('NOW'),
       },
-    })
+    });
   },
 
   async down (queryInterface, Sequelize) {
-   await queryInterface.dropTable('homeowners');
+    await queryInterface.dropTable('homeowners');
   }
 };
