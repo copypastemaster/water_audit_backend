@@ -1,9 +1,10 @@
-// Migration for creating 'users' table
+'use strict';
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('users', {
       id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         autoIncrement: true,
         primaryKey: true,
       },
@@ -15,28 +16,41 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      roleId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'roles',
-          key: 'id',
-        },
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      },
-      subdivision: {
+      block: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      lot: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      street: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      completeAddress: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      isHomeowner: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+      },
+      isOfficer: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      isAdmin: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.fn('NOW'),
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.fn('NOW'),
       },
     });
   },

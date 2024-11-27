@@ -1,12 +1,10 @@
-import { Model, DataTypes } from "sequelize";
+import { Model, DataTypes, ForeignKey } from "sequelize";
 import { sequelize } from "../config/sequelize.config";
 import { User } from "./user.model";
 
-export class Admin extends Model {
+export class Admin extends User {
   declare id: number;
-  declare userId: number; // Foreign key to User model
-  declare createdAt: Date;
-  declare updatedAt: Date;
+  declare userId: ForeignKey<User['id']>;
 }
 
 Admin.init({
@@ -22,9 +20,7 @@ Admin.init({
       key: 'id',
     },
     allowNull: false,
-  },
-  createdAt: DataTypes.DATE,
-  updatedAt: DataTypes.DATE,
+  }
 }, {
   sequelize,
   tableName: "admins",

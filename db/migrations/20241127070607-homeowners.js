@@ -16,24 +16,6 @@ module.exports = {
           key: 'id',
         },
         allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-      },
-      block: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      lot: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      street: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      completeAddress: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
       previousWaterReading: {
         type: Sequelize.INTEGER.UNSIGNED,
@@ -46,6 +28,7 @@ module.exports = {
       toPay: {
         type: Sequelize.FLOAT,
         allowNull: false,
+        defaultValue: 0,
       },
       isWaterCutOff: {
         type: Sequelize.BOOLEAN,
@@ -54,16 +37,7 @@ module.exports = {
       arrears: {
         type: Sequelize.FLOAT,
         allowNull: false,
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.fn('NOW'),
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.fn('NOW'),
+        defaultValue: 0,
       },
     });
   },

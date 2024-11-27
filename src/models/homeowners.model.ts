@@ -5,17 +5,11 @@ import { User } from "./user.model";
 export class Homeowner extends Model {
   declare id: number;
   declare userId: ForeignKey<User['id']>; // Foreign key to User model
-  declare block: string;
-  declare lot: string;
-  declare street: string;
-  declare completeAddress: string;
   declare previousWaterReading: number;
   declare currentWaterReading: number;
   declare toPay: number;
   declare isWaterCutOff: boolean;
   declare arrears: number;
-  declare createdAt: Date;
-  declare updatedAt: Date;
 
   /**
    * Checks if the homeowner has arrears
@@ -40,22 +34,6 @@ Homeowner.init({
     },
     allowNull: false,
   },
-  block: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  lot: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  street: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  completeAddress: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
   previousWaterReading: {
     type: DataTypes.INTEGER.UNSIGNED,
     allowNull: false,
@@ -67,6 +45,7 @@ Homeowner.init({
   toPay: {
     type: DataTypes.FLOAT,
     allowNull: false,
+    defaultValue: 0,
   },
   isWaterCutOff: {
     type: DataTypes.BOOLEAN,
@@ -75,9 +54,8 @@ Homeowner.init({
   arrears: {
     type: DataTypes.FLOAT,
     allowNull: false,
-  },
-  createdAt: DataTypes.DATE,
-  updatedAt: DataTypes.DATE,
+    defaultValue: 0,
+  }
 }, {
   sequelize,
   tableName: "homeowners",
